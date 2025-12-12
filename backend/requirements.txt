@@ -10,3 +10,4 @@ joblib
 scipy
 websockets
 requests
+psycopg2-binary
