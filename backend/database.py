@@ -20,10 +20,15 @@ SessionLocal = sessionmaker(
 
 Base = declarative_base()
 
+# If you have models defined, they must be imported BEFORE this line
 Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()
     try:
         yield db
+    except Exception as e:
+        print("DB Session Error:", e)
+        raise
     finally:
+        db.close()
