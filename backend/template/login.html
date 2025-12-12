@@ -1,0 +1,47 @@
+<!-- templates/login.html - Frontend: Simple HTML form for email input -->
+<!-- Place this in a 'templates' folder in the same directory as app.py -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto; padding: 20px; }
+        form { display: flex; flex-direction: column; }
+        input { margin-bottom: 10px; padding: 8px; }
+        button { padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .flash { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Enter Your Email</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
+    <form action="/send_otp" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Send OTP</button>
+    </form>
+</body>
+</html>
+<!-- templates/login.html - Frontend: Simple HTML form for email input -->
+<!-- Place this in a 'templates' folder in the same directory as app.py -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto; padding: 20px; }
+        form { display: flex; flex-direction: column; }
+        input { margin-bottom: 10px; padding: 8px; }
+        button { padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .flash { color: red; }
+    </style>
+</head>
+<body>
+    
