@@ -22,4 +22,6 @@ model = xgb.XGBClassifier(max_depth=3, n_estimators=20, learning_rate=0.1)
 model.fit(X,y)
 
 joblib.dump(model, "collision_ai_model.pkl")
-print("AI Model Saved!")
+print("AI Model Saved!")
+
+
