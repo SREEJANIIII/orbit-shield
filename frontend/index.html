@@ -10,11 +10,31 @@
     body {
       background:#020b1a;
       color:white;
-      font-family: "Inter", Arial, sans-serif;
-      overflow-x: hidden;
+      font-family:"Inter", Arial, sans-serif;
+      overflow-x:hidden;
     }
 
-    a { text-decoration:none; color:inherit; }
+    /* 🔥 VIDEO BACKGROUND */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Dark overlay to improve text readability */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
+      z-index: -1;
+    }
 
     /* NAVBAR */
     nav {
@@ -60,6 +80,8 @@
       justify-content:space-between;
       align-items:center;
       gap:40px;
+      position:relative;
+      z-index:5;
     }
 
     .hero-left h1 {
@@ -94,6 +116,8 @@
       justify-content:center;
       gap:30px;
       padding:0 60px;
+      position:relative;
+      z-index:5;
     }
 
     .card {
@@ -105,27 +129,27 @@
       box-shadow:0 8px 25px rgba(0,0,0,0.2);
     }
 
-    .card h3 {
-      margin-top:15px;
-      font-size:20px;
-      font-weight:700;
-    }
-    .card p {
-      margin-top:10px;
-      opacity:0.7;
-    }
+    .card h3 { margin-top:15px; font-size:20px; font-weight:700; }
+    .card p { margin-top:10px; opacity:0.7; }
 
-    /* 3D Section */
     #three-container {
       margin-top:80px;
       width:100%;
       height:500px;
+      position:relative;
+      z-index:5;
     }
 
     canvas { display:block; }
   </style>
 </head>
 <body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="./OrbitShhield.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
 
 <!-- NAVBAR -->
 <nav>
@@ -147,11 +171,6 @@
     <p>AI-powered orbital debris prediction for every mission.</p>
     <button class="hero-btn">View Dashboard (heatmaps & trajectories)</button>
   </div>
-
-  <div class="hero-right">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Globe_icon.svg/512px-Globe_icon.svg.png" 
-         width="380" style="opacity:0.7;">
-  </div>
 </section>
 
 <!-- FEATURE CARDS -->
@@ -170,10 +189,9 @@
   </div>
 </section>
 
-<!-- 3D GLOBE SECTION -->
+<!-- 3D GLOBE -->
 <div id="three-container"></div>
 
-<!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
 <script src="app.js"></script>
 
