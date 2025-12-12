@@ -1,15 +1,21 @@
+# database.py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
+from dotenv import load_dotenv
+
+# load local .env when running locally
+load_dotenv()
 
 DATABASE_URL = os.environ.get(
     "DATABASE_URL",
-    "postgresql://orbit_shield_db_user:BuZzucvmlIsffBV32fK3oXd4H8K7Xjw7@dpg-d4tuechr0fns739fdkng-a.oregon-postgres.render.com/orbit_shield_db"
+    "sqlite:///./orbitshield.db"
 )
 
+# create engine, allow SQLite's special arg only when using sqlite
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {}
+    connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 )
 
 SessionLocal = sessionmaker(
@@ -20,6 +26,15 @@ SessionLocal = sessionmaker(
 
 Base = declarative_base()
 
+# Ensure models are imported when create_all runs (avoid missing table definitions)
+# If your models are in the same package, importing them here helps ensure metadata is populated.
+try:
+    # import models  # uncomment if relative imports cause issues; ensure no circular import
+    pass
+except Exception:
+    pass
+
+# Create tables (idempotent) — safe for both local & Render
 Base.metadata.create_all(bind=engine)
 
 def get_db():
