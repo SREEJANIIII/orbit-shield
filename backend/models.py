@@ -3,18 +3,19 @@ from database import Base
 from datetime import datetime
 
 class SpaceObject(Base):
-    _tablename_ = "space_objects"
+    __tablename__ = "space_objects"   # FIXED — TWO underscores on each side
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False, unique=True)
-    type = Column(String, nullable=False)  # "satellite" or "debris"
+    type = Column(String, nullable=False)
     tle_line1 = Column(String, nullable=False)
     tle_line2 = Column(String, nullable=False)
-    size = Column(Float, nullable=True)  # optional size in meters
+    size = Column(Float, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
+
 class Alert(Base):
-    _tablename_ = "alerts"
+    __tablename__ = "alerts"          # FIXED — TWO underscores on each side
 
     id = Column(Integer, primary_key=True, index=True)
     object1_id = Column(Integer, ForeignKey("space_objects.id"), nullable=False)
