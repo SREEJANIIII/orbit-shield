@@ -3,20 +3,10 @@ uvicorn[standard]
 sqlalchemy
 pydantic
 python-multipart
-
-# Orbit propagation
 sgp4
-
-# AI model
 xgboost
 numpy
 joblib
-
-# Optional improvements / safety
 scipy
-
-# Real-time streaming
 websockets
-
-# If using requests in utilities (optional)
 requests
