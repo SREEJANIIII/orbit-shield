@@ -15,4 +15,4 @@ class SpaceObjectOut(SpaceObjectBase):
     id: int
 
     class Config:
-        orm_mode = True
+        orm_mode = True
