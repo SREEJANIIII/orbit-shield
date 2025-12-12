@@ -20,7 +20,7 @@ Base.metadata.create_all(bind=engine)
 FRONTEND_URL = os.environ.get("ALLOWED_ORIGINS", "*")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_URL] if FRONTEND_URL != "*" else ["*"],
+    allow_origins=[FRONTEND_URL] if FRONTEND_URL != "" else [""],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -71,10 +71,9 @@ def list_objects(db: Session = Depends(get_db)):
     return crud.get_all_objects(db)
 
 @app.post("/ai_predict")
-def ai_predict(distance: float, speed: float, size_sat: float, size_deb: float, history: int, tle_noise: float):
-    return run_ai_scoring(distance, speed, size_sat, size_deb, history, tle_noise)
+def ai_predict(distance: float, speed: float, size_sat: float, size_deb: float, history: int, noise: float):
+    return run_ai_scoring(distance, speed, size_sat, size_deb, history, noise)
 
 @app.get("/health")
 def health():
     return {"status": "ok", "timestamp": datetime.utcnow().isoformat()}
-
