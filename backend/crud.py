@@ -16,3 +16,4 @@ def create_space_object(db: Session, data: schemas.SpaceObjectCreate):
 
 def get_all_objects(db: Session):
     return db.query(models.SpaceObject).all()
+
