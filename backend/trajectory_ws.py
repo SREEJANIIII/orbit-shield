@@ -28,21 +28,21 @@ try:
 except Exception:
     ai_model = None
 
-# WS manager
+# WebSocket connection manager
 class ConnectionManager:
-    def _init_(self):
+    def __init__(self):
         self.clients = set()
 
-    async def connect(self, ws):
+    async def connect(self, ws: WebSocket):
         await ws.accept()
         self.clients.add(ws)
 
-    def disconnect(self, ws):
+    def disconnect(self, ws: WebSocket):
         self.clients.discard(ws)
 
-    async def broadcast(self, data):
+    async def broadcast(self, data: dict):
         dead = []
-        for ws in self.clients:
+        for ws in list(self.clients):
             try:
                 await ws.send_text(json.dumps(data))
             except:
@@ -68,7 +68,7 @@ async def create_token():
     TOKEN_STORE[token] = expiry
     return {"token": token, "expiry": expiry}
 
-def propagate_tle(line1, line2, timestamp: datetime):
+def propagate_tle(line1: str, line2: str, timestamp: datetime):
     try:
         sat = Satrec.twoline2rv(line1, line2)
         jd, fr = jday(
@@ -160,4 +160,4 @@ async def ws_positions(ws: WebSocket, token: str = Depends(get_token), db: Sessi
     except WebSocketDisconnect:
         manager.disconnect(ws)
     finally:
-        db.close()
+        db.close()
