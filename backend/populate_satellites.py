@@ -1,51 +1,26 @@
 # populate_satellites.py
-import os
-from datetime import datetime
 from database import SessionLocal, engine, Base
 from models import SpaceObject
-from tle_importer import fetch_latest_tle
+from tle_importer import import_tle_to_db
 
-# Ensure tables exist
+# ensure tables (safe because database.py already calls create_all, but keep here for standalone usage)
 Base.metadata.create_all(bind=engine)
 
-# Example list of NORAD IDs you want to import
+# Example list (customize)
 SATELLITE_IDS = [
     25544,  # ISS
-    33591,  # OneWeb example
-    43205,  # Starlink example
-    # Add more NORAD IDs as needed
+    33591,  # example
+    43205,  # example
 ]
 
-def import_tle_to_db(norad_id, obj_type="satellite", size=5):
-    db = SessionLocal()
-    try:
-        tle_data = fetch_latest_tle(norad_id)
-        if not tle_data:
-            print(f"No TLE found for NORAD ID {norad_id}")
-            return
-
-        # Check if already exists
-        obj = db.query(SpaceObject).filter(SpaceObject.name == tle_data["name"]).first()
+def import_list(ids):
+    for nid in ids:
+        print(f"Importing {nid} ...")
+        obj = import_tle_to_db(nid, obj_type="satellite", size=5)
         if obj:
-            print(f"{tle_data['name']} already exists, skipping.")
-            return
+            print(f" -> {obj.name} added/updated (id={obj.id})")
+        else:
+            print(" -> failed or not found")
 
-        new_obj = SpaceObject(
-            name=tle_data["name"],
-            type=obj_type,
-            tle_line1=tle_data["line1"],
-            tle_line2=tle_data["line2"],
-            size=size
-        )
-        db.add(new_obj)
-        db.commit()
-        print(f"Added {tle_data['name']} to DB.")
-    except Exception as e:
-        print(f"Error importing NORAD ID {norad_id}: {e}")
-    finally:
-        db.close()
-
-if _name_ == "_main_":
-    for norad_id in SATELLITE_IDS:
-        import_tle_to_db(norad_id)
-
+if __name__ == "__main__":
+    import_list(SATELLITE_IDS)
