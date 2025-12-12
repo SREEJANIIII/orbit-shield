@@ -5,6 +5,9 @@ from database import Base, engine, get_db
 import models, schemas, crud
 import os
 import math, numpy as np, joblib
+import uuid, time
+import auth
+import trajectory_ws
 from datetime import datetime
 
 app = FastAPI(title="OrbitShield Backend API")
@@ -61,6 +64,15 @@ def run_ai_scoring(distance, speed, size_sat, size_deb, history, noise):
 @app.get("/")
 def root():
     return {"message": "OrbitShield Backend is running!"}
+
+
+# mount websocket router (trajectory_ws provides router)
+app.include_router(trajectory_ws.router, prefix="/ws")
+
+
+@app.post("/auth/token")
+def create_token():
+    return auth.create_token()
 
 @app.post("/add_object", response_model=schemas.SpaceObjectOut)
 def add_object(obj: schemas.SpaceObjectCreate, db: Session = Depends(get_db)):
