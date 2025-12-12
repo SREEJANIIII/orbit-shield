@@ -1,1 +1,181 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>OrbitShield — Real-time 3D</title>
 
+  <style>
+    /* GLOBAL */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:#020b1a;
+      color:white;
+      font-family: "Inter", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration:none; color:inherit; }
+
+    /* NAVBAR */
+    nav {
+      width:100%;
+      padding:20px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      background:rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      z-index:20;
+    }
+
+    nav .logo {
+      font-size:22px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    nav ul {
+      display:flex;
+      gap:40px;
+      list-style:none;
+      font-size:15px;
+    }
+
+    .launch-btn {
+      padding:10px 18px;
+      background:#007bff;
+      border-radius:8px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding:160px 60px 100px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:40px;
+    }
+
+    .hero-left h1 {
+      font-size:62px;
+      font-weight:700;
+      line-height:1.1;
+      max-width:500px;
+    }
+    .hero-left p {
+      margin-top:20px;
+      font-size:20px;
+      max-width:420px;
+      opacity:0.85;
+    }
+
+    .hero-btn {
+      margin-top:30px;
+      padding:15px 28px;
+      background:#138dff;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+      cursor:pointer;
+      color:white;
+      font-weight:600;
+    }
+
+    /* FEATURES */
+    .features {
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      padding:0 60px;
+    }
+
+    .card {
+      width:320px;
+      background:white;
+      color:black;
+      padding:30px;
+      border-radius:16px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin-top:15px;
+      font-size:20px;
+      font-weight:700;
+    }
+    .card p {
+      margin-top:10px;
+      opacity:0.7;
+    }
+
+    /* 3D Section */
+    #three-container {
+      margin-top:80px;
+      width:100%;
+      height:500px;
+    }
+
+    canvas { display:block; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">🌐 OrbitShield</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Technology</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="launch-btn">Launch Demo</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1>Predict. Protect. Navigate.</h1>
+    <p>AI-powered orbital debris prediction for every mission.</p>
+    <button class="hero-btn">View Dashboard (heatmaps & trajectories)</button>
+  </div>
+
+  <div class="hero-right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Globe_icon.svg/512px-Globe_icon.svg.png" 
+         width="380" style="opacity:0.7;">
+  </div>
+</section>
+
+<!-- FEATURE CARDS -->
+<section class="features">
+  <div class="card">
+    <h3>🛰 Real-time debris tracking</h3>
+    <p>Continuous monitoring of orbital debris.</p>
+  </div>
+  <div class="card">
+    <h3>🔮 AI-physics hybrid prediction</h3>
+    <p>Advanced forecasts powered by machine learning.</p>
+  </div>
+  <div class="card">
+    <h3>🛡 Safe-orbit auto-suggestions</h3>
+    <p>Recommended maneuvers to avoid collisions.</p>
+  </div>
+</section>
+
+<!-- 3D GLOBE SECTION -->
+<div id="three-container"></div>
+
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
