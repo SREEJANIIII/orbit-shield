@@ -1,6 +1,6 @@
-# 🛰️ OrbitShield
+# 🛰️ OrbitShield (WHACKIEST HACKATHON'25)
 
-**OrbitShield** is a full‑stack space situational awareness (SSA) web application that visualizes satellites and space debris in real time, predicts close approaches, and highlights potential collision risks using orbital mechanics and AI‑assisted risk scoring.
+**OrbitShield** is a full‑stack space situational awareness (SSA) web application that visualizes satellites and space debris in real time, predicts close approaches, and highlights potential collision risks using orbital mechanics and AI‑assisted risk scoring. WE built this as a part of the hackathon, whackiest, held in my cllg in dec'25. 
 
 Built for hackathons and demos, OrbitShield combines **FastAPI**, **WebSockets**, **SGP4/Skyfield**, and **Three.js** into an interactive 3D experience.
 
@@ -182,7 +182,7 @@ If live TLE download fails, OrbitShield automatically switches to **fallback TLE
 
 ## 🧑‍🚀 Team
 
-Built with 💙 during hackathons by a student team passionate about **space, safety, and software**.
+Built with 💙 during hackathons by a student team passionate about **space, safety, and software**. Student names: Nihal REddy K, Ranjith, Ritisha Patra, Sreejani BHattacharya.
 
 ---
 
