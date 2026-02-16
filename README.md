@@ -182,7 +182,7 @@ If live TLE download fails, OrbitShield automatically switches to **fallback TLE
 
 ## 🧑‍🚀 Team
 
-Built with 💙 during hackathons by a student team passionate about **space, safety, and software**. Student names: Nihal REddy K, Ranjith, Ritisha Patra, Sreejani BHattacharya.
+Built with 💙 during hackathons by a student team passionate about **space, safety, and software**. Student names: Nihal Reddy K, Ranjith, Ritisha Patra, Sreejani Bhattacharya.
 
 ---
 
